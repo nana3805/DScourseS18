@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{PS1}
+\author{kevin.kontchou }
+\date{January 2018}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here, it will instantly disappear and be replaced by something even more bizarre and inexplicable.
+There is another theory which states that this has already happened.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=1.7]{universe.jpg}
+\caption{The Universe}
+\label{fig:univerise}
+\end{figure}
+
+\section{Body}
+Economics is interesting because it can apply to so many different industries. The study of markets, consumer/producer behavior, and how the economy is affected by shifts and changes in society is interesting. I don't know what I would want to do for my project in this class. My goals for this class is to gain some practical knowledge and skill in coding that I can take into the job market as well as use in my personal life. I don't yet have a clear plan for after graduation. I am still weighing my options to see which one is best for my career.  
+
+\section{Conclusion}
+``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
+
+\section{Equation}
+a^2+b^2=c^2
+\end{document}
+
