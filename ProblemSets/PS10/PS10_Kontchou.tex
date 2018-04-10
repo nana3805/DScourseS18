@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{PS10_Kontchou}
+\author{kevin.kontchou }
+\date{April 2018}
+
+\begin{document}
+
+\maketitle
+\section{Optimal Values}
+\begin{table}[h!]
+\centering
+ \begin{tabular}{||c c c||} 
+ \hline
+ model & f1test.mean & gmean.test.mean \\ [0.5ex] 
+ \hline\hline
+ Trees & 0.8952320 & 0.6516836 \\ 
+ Logit & 0.8630524 & 0.0000000 \\
+ NeuralNet & 0.9066309 & 0.757076 \\
+ kNN & 0.8986300 & 0.7471255 \\ [1ex] 
+ \hline
+ \end{tabular}
+\end{table}
+
+\section{Out of Sample Results}
+\begin{table}[h!]
+\centering
+ \begin{tabular}{||c c c||} 
+ \hline
+ model & f1 & mean \\ [0.5ex] 
+ \hline\hline
+ Trees & 0.8968421 & 0.6730932 \\ 
+ Logit & 0.8986422 & 0.6762722 \\
+ NeuralNet & 0.9077090 & 0.7626595 \\
+ kNN & 0.8987354 & 0.7567329 \\
+ NaiveBayes & 0.8841864 & 0.7259584 \\ [1ex] 
+ \hline
+ \end{tabular}
+ \end{table}
+ 
+\section{Explanation}
+\textbf{The optimal values for Logit Model also included lambda=0.201; alpha=0.451. Optimal values for Neural Net included size=10; decay=0.303; maxit=1000. Although I didn't get any error messages, computer could not tune the SVM model for some reason. Everytime I tried R just froze, and I had to restart either R or the computer itself. Hopefully, you have better luck. Everything else in the code ran just fine.}
+
+
+\end{document}
