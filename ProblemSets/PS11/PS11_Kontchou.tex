@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{PS11_Kontchou}
+\author{kevin.kontchou }
+\date{April 2018}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+{The Ultimate Fighting Championship is the world's leading mixed martial arts (MMA) promotion. MMA is a sport where athletes use a wide array of different martial arts techniques to defeat their opponents. The UFC is able to gather athletic talent from all across the globe to compete on the world's biggest stage for MMA. This project aims to find trends among the most successful fighters and  create a pound-for-pound list.}
+\section{Literature Review}
+\textbf{One of the largest criticism levied at the UFC by their fans and fighters are the rankings and their lack of consistency or credibility. Due to the volatile nature of the sport, creating a comprehensive pound-for-pound ranking and can rankings according to weight class can be difficult. I used two data sets scraped from Sherdog.com that gave me a table of Fighters and Fights over 25 years in the UFC. The data sets were then merged to create a list ranked by number of wins and fights. The wins were then adjusted for competition and number of fights. The result could be considered a pound-for-pound ranking in the UFC. I also wanted to observe trends among fighter age and win percentage to compare how experience vs. youth. }
+\section{Data}
+\textbf{I used a data set previously scraped by another MMA enthusiast posted online. The data was in the form of two data sets. One data is a table containing Fighters' names, weight classes, age, birth date, country, height, ect. The other data set contains a table of location, result, event, method of defeat, ect.}
+\section{Methods}
+\textbf{I merged the two data frames by the name, weight class, height, age, and made wins = the # of times a fighter was fighter1. The plan is to use a prior beta distribution and update it using the observed outcomes to get an adjusted posterior beta distribution. The expected value of this posterior beta distribution will be the adjusted win percentage for each fighter.}
+\section{Findings}
+\textbf{Jon Jones is the #1 Pound-for-pound fighter in the world.} 
+\section{Conclusion}
+\textbf{My code doesn't yet run the correct way and is not complete. I can't make any strong conclusions yet.} 
+\end{document}
