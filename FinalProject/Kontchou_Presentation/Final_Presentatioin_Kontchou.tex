@@ -1,0 +1,140 @@
+\documentclass{beamer}
+
+\usepackage{bookman}
+\usepackage{csvsimple}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usetheme{AnnArbor}
+\title{Analysing UFC Data}
+\author{Kevin Kontchou}
+\institute{DScourseS18}
+\date{05-1-2018}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{What is the UFC?}
+\begin{itemize}
+  \item The Ultimate Fighting Championship (UFC) was created in 1993 to to identify the most effective martial art in a contest.
+  \item Was the between competitors of different fighting disciplines like boxing, Brazilian jiu-jitsu, Sambo, wrestling, Muay Thai, karate, judo, ect.
+  \item UFC has grown to the world's leading mixed martial arts (MMA) promotion company, putting on the most events in the industry by a large margin.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{What data did I use?}
+\begin{itemize}
+  \item An MMA and data science enthusiast, Jian Qiao, scraped the data from sherdog.com
+  \item Two data sets: Fights and Fighters
+  \item The two data sets used for this 390 events and 4058 matches has been held around the globe
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Problems with the data}
+\begin{itemize}
+    \item Needed some cleaning and wrangling
+    \item Does not include events after 2/4/17. 44 fights and over 100 debuting fighters
+    \item UFC has absorbed other MMA promotions like StrikeForce and Pride MMA
+    \item Overwhelming majority of fighters do not spend entire career UFC.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What questions am I looking to answer?}
+\begin{itemize}
+\item Who is the greatest fighter of all-time?
+\item What is the distribution of the different methods of victory?
+\item How does age affect success in the UFC?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What methods did I use?}
+\begin{itemize}
+    \item Merged the two data sets by number of fights and wins to get win percentage for each fighter
+    \item Used Emperical Bayes Estimation to adjust for fighters with very few fights and win percentages of 0 or 1
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What methods did I use?}
+\begin{itemize}
+    \item Merged two data sets by method of victory to get show the distribution of different methods.
+    \item Did the same for each individual weight class
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What methods did I use?}
+\begin{itemize}
+    \item Merged two data sets by the birth date of each fighter to get an age for each fighter.
+    \item Subtracted the date of the event by the birth date of each fighter to get a "FightingAge" variable
+    \item Used FightingAge to get distribution of number of wins of UFC fights by age of UFC fighters and create a graph that measures success with age.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{What were some of the findings?}
+\begin{center}
+\resizebox{8cm}{2cm}{
+\begin{tabular}{cccccc} \hline
+Rank & Name & Class & Bouts & Wins & Win Percentage \\ \hline \hline
+1 & Jon Jones & Light Heavyweight & 17 & 16 & 0.83239 \\
+2 & Georges St. Pierre & Welterweight & 21 & 19 & 0.81999 \\
+3 & Demetrious Johnson & Flyweight & 14 & 13 & 0.80669 \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{What were some of the findings?}
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{AllFightersPie1.png}
+   \hfill
+   \includegraphics[width=0.5\textwidth]{LightHeavyweightPie2.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{What were some of the findings?}
+\begin{figure}
+   \includegraphics[width=0.5\textwidth]{WelterweightPie2.png}
+   \hfill
+   \includegraphics[width=0.5\textwidth]{FlyweightsPie1.png}
+
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{What were some of the findings?}
+\begin{center}
+\begin{figure}
+\includegraphics[width=75mm,scale=0.5]{BoutsAgeDistribution.png}
+\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{What were some of the findings?}
+\begin{center}
+\begin{figure}
+\includegraphics[width=75mm,scale=0.5]{WinRate.png}
+\end{figure}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusion}
+\begin{itemize}
+  \item There is room for argument in the top 3, but Jon Jones has the edge as the GOAT.
+  \item Most fights in the UFC are taken by fighters in their late 20s and early 30s, which indicates that the UFC is a destination that fighters are building their careers towards.
+  \item Win rate declines with age, which says something about youth vs. experience. 
+\end{itemize}
+\end{frame}
+\end{document}
