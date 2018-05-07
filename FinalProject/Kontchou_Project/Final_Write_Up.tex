@@ -1,0 +1,207 @@
+\documentclass[12pt,english]{report}
+\usepackage{mathptmx}
+
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{darkblue}{RGB}{0.,0.,139.}
+
+\usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{lipsum}
+\usepackage{fixltx2e}
+\usepackage[authoryear]{natbib}
+
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage[flushleft]{threeparttable}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{pdflscape}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=true,pdfborder={0 0 0},backref=false,
+ colorlinks,citecolor=black,filecolor=black,
+ linkcolor=black,urlcolor=black]
+ {hyperref}
+\usepackage[all]{hypcap} % Links point to top of image, builds on hyperref
+\usepackage{breakurl}    % Allows urls to wrap, including hyperref
+
+\linespread{2}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\renewcommand{\baselinestretch}{2.0}
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{0.5cm}
+        \Large
+        \textbf{Who is the Greatest Fighter of All Time}
+        
+        \vspace{0.5cm}
+        Analysis of UFC Athletes
+        
+        \vspace{1.5cm}
+        
+        \textbf{Kevin Kontchou}
+        
+        \vfill
+        
+        Final Written Report for \\
+        Data Science for Economists 
+        
+        \vspace{0.8cm}
+        
+        \includegraphics[width=0.3\textwidth]{University_of_Oklahoma_seal.png}
+        
+        College of Arts and Sciences\\
+        University of Oklahoma\\
+        United States of America\\
+        May 8, 2018
+        
+    \end{center}
+\end{titlepage}
+\section{Introduction}
+\setlength{\parindent}{3em}
+\par Due to budding popularity facilitated by stars like Conor Mcgregor and Ronda Rousey, Mixed martial arts (MMA) is one of the fastest growing sports in the world today. MMA is a full-contact combat sport in which "athletes mix major aspects of other well-established combat sports, explaining the term “mixed” in mixed martial arts. The component sports can best be grouped into 3 ranges of combat: standing strikes, clinch, and grappling." \cite{qiao_ji2017}\par There cannot be a conversation about MMA without mentioning the Ultimate Fighting Championship (UFC). The UFC was created in 1993 to to identify the most effective martial art in a contest  between competitors of different fighting disciplines like boxing, Brazilian jiu-jitsu, Sambo, wrestling, Muay Thai, karate, judo, ect. \cite{qiao_ji2017} \par Lorenzo and Frank Fertita along with their business partner and eventual president of the UFC, Dana White, purchased the UFC in 2001. The three commercialized the UFC by adding more rules and weight classes to create a legitimate league of the most skilled and talented combat athletes in the world. The UFC has now become a giant in the MMA industry, becoming synonymous with the sport itself.  \par  The UFC employs the most elite fighters in the world and put on more events than any other organization. This makes their data ideal for analysis to determine the constantly debated issue of who is the greatest fighter of all time and how much of outliers are the elite in the UFC.
+\section{Literature Review}
+\label{sec:litreview}
+\par An overview of UFC fighters and trends in UFC fights is necessary to understand and appreciate the irregularity of the level of success elite UFC fighters are able to achieve. Research completed by Harris and Lenetsky showed a discrepancy in the ages of the top athletes in MMA and the top athletes of the component sports of MMA, with MMA athletes being significantly older. \cite{lenetsky_harris_2012} Their findings warranted a deeper analysis of ages of top MMA fighters, almost all of which are in the UFC. \par Although MMA is viewed as a brutal activity, there is a cerebral aspect to the sport when considering all the different factors that go into a fight. Data scientist, Jian Qiao, analyzed many of these factors in an attempt to identify the most effective fighting style. His scraping relevant UFC event information from MMA websites was integral to my analysis. This research project is based on the two data sets of UFC Fights and UFC Fighters he created, containing 390 events and 4058 matches held around the globe by the UFC over 24 years. \cite{qiao_ji2017} His analysis on win-rate for fighters with age gave my research more insight. \par Karim Lahrichi, another MMA and data science enthusiast, utilized an Empirical Bayes Estimation equation to create a top 10 pound for pound list with his own data set of fighters. His equation returned a slightly different list with data sets used in this research project.  
+\section{Data}
+\par The primary data source for this research was the data scraped from Sherdog.com by Jian Qiao. The data contained much more information than necessary ror the purposes of this study. The data was broken up into two data sets, Fights and Fighters. It contains 390 events, 1641 fighters, and 4058 matches that spans from the UFC's first event in November 1, 1993 to February 4, 2017. The Fights data set consisted of event name, match index, fighter1, fighter2, method, method detail, round, time, referee, fighter1 url, fighter2 url, event ID, event date, and event location. The Fighters data set consisted of the name, birth date, age, birth place, country, height, weight, association, class, fighter ID, url, nick name, and photo url. \par Although the data sets contain events over 24 years, it does not include over 100 debuting fighters and 44 events that occurred after 2/4/17. Due to the volatile nature of the sport and the careers of its athletes, that may affect the results. \par The UFC has also acquired five other MMA leagues some of which, like StrikeForce and WEC, were directly competing with the UFC for elite MMA talent.\cite{harty_2014} The top fighters in these organizations are at a disadvantage of not having a bulk of their careers included in the study. Even though many of these fights were high profile events, they did not occur under the UFC banner and, therefore, do not count for or against any of the fighters in this study. Although the overwhelming majority of fighters spend most of their careers outside the UFC, most elite fighters spend a significant portion of their careers with the organization. The UFC also provides the largest platform in the sport for MMA athletes, so their events hold more weight in evaluating the who is the greatest fighter of all time. 
+\section{Method}
+\par This study makes the argument for the greatest fighter of all time along five criteria; win percentage, win percentage of opponents, title defenses, methods of victory, and weight class characteristics. Overall trends for UFC fighters were also examined to highlight how special the elite fighters really are. \par I gathered most of this information using a series of merge commands in R. I created a top 3 fighter list by adjusted win percentage through merging the two data sets by number of fights and wins and using an Empirical Bayes Estimation:
+\begin{equation}
+\alpha_{0} = \frac{m_{1}*(m_{1}-m_{2})}{m_{2} - m_{1}^2}
+\end{equation}
+\begin{equation}
+\beta_{0} = \frac{(1 - m_{1})*(m_{1}-m_{2})}{m_{2} - m_{1}^2}
+\end{equation}
+
+Here, m\textsubscript{1} is 0.5, and m\textsubscript{2} equals the sum of all the fighters win percentages divided by the number of win percentages. These two formulas yield the equation of adjusted win percentage:
+\begin{equation}
+win\%_{adj} = \frac{wins + \alpha_{0}}{fights + \alpha_{0} + \beta_{0}}
+\end{equation}
+The idea was to get a prior beta distribution and update it using the observed outcomes to get an adjusted posterior beta distribution. The expected value of this posterior beta distribution turned out to be adjusted win percentage for each fighter that excludes fighters with very few fights and win percentages of 0 or 1. \cite{Lahrichi_ka2016} \par The top 3 was then evaluated by analyzing the win percentages of their opponents to assess the level of difficulty in their victories. I also researched their careers to get a number of title defense for each fighter included to look at the longevity of their dominance. \par I merged the two data sets again by method of victory to get show the distribution of different ways each fighter won their fights to see how often each fighter finished his opponent instead letting the fight go to decision to a 'killer instinct' characteristic. I did the same thing for all fighters to compare to compare the finishing percentage among the greatest fighters to the average. The same process was done for each weight class to get an idea of the margin for error each fighter has in his weight class. If the weight class shows a relatively low percentage of its fights go to decision, one can reasonably assume that a fighter in that weight class has a smaller margin for error in his movements in the cage because any technique has a higher chance of ending instantly. \par Some of the overall trends examined in this study was the adjusted win percentage of all fighters, which was displayed visually in a histogram. I merged the two data sets by the birth date of each fighter to get an age for each fighter and then subtracted the date of the event by the birth date of each fighter to get a "FightingAge" variable in R \cite{qiao_ji2017}. That variable was then used to get a distribution of how many matches included fighters from ages 20 to 40. The variable was also used to create a graphical visualization of changes in win-rate with age. 
+\section{Findings}
+\par After running the R code, the results were quite interesting. The Bayes Estimation returned a list of three of the greatest fighters in UFC history; Jon Jones, Georges St. Pierre, and Demetrious Johnson. In fact, there is currently a lot of debate in the MMA community for who is the greatest fighter of all time with these three names constantly being brought up. Jon Jones is widely regarded as an MMA savant with immeasurable talent and potential, even at the ripe age of 30 years old. GSP is viewed as the greatest representative the sport and role model for all aspiring MMA champions. Demetrious Johnson, on the other hand, is considered the future of MMA technique. An athlete that is proficient at all aspects of the sport and can flow from technique to technique with efficiently and effectively. \cite{ryder_2018} \par These three fighters are not only champions in the Light Heavyweight, Welterweight, and Flyweight divisions respectively but also had adjusted win percentages of \textit{0.83239}, \textit{0.81999}, and \textit{0.80669}. When compared with the average adjusted win percentage of \textit{0.4871} for UFC fighters, the percentages of these three champions stand out even more. In a brutal sport where the best of the best fighters hand each other defeats regularly, these three fighters' records have been able to remain relatively unscathed. \par The adjusted win percentage of the opponents for Jon Jones, Georges St. Pierre (GSP), and Demetrious Johnson gives insight into the level of competition each champion faced. Jon Jones', GSP's, and Demetrious Johnson's opponents had an average adjusted win percentage of \textit{0.5785}, \textit{0.5468}, and \textit{0.5616} respectively. The worst opponents they faced in the UFC had win percentages of \textit{0.3678}, \textit{0.2909}, and \textit{0.3248}; while the stiffest competition they faced had the respective adjusted win percentages of \textit{0.7212}, \textit{0.7546}, and \textit{0.7556}. Comparing the average win percentages with the 3rd quartile value of win percentages for all fighters, \textit{0.5473}, we see that each of the top 3 fighters defeated upper level UFC competitors. \par Jon Jones has defended his Light Heavyweight Championship title 8 consecutive times, while GSP and Demetrious Johnson have defended their Welterweight and Flyweight titles 9 consecutive times. \par The ratio of different methods of victory in the UFC give information on the likelihood a fight is going to end with one of the fighters being finished (i.e. KO, TKO, Submission, Technical Submission). The figure shows that 56.8\% of fights end in a finish while \textit{42.6\%} end in judges' decision. When comparing the ratios for all fights to fights in the welterweight and flyweight division, one can see a larger percentage of fights end in judges' decision, \textit{45.3\%} and \textit{62.3\%} respectively, and smaller percentage end in a finish, \textit{52.1\%} and \textit{37.7\%} respectively. The trend is the opposite with light heavyweights with their decision percentage being \textit{37\%} and finish percentage being \textit{61.1\%}. This information was useful for individual fighters as well. Jon Jones finishes \textit{56.25\%} of his opponents in his victories, slightly below the average for his weight class. Demetrious Johnson, on the other hand, finished 38.5, which was slightly above the average. GSP, who was regularly criticized for having boring fights after he became a champion, had the lowest finishing percentage of \textit{36.8\%} \cite{kim_da2011}. 
+\section{Conclusion}
+Several conclusions can be made from the findings of this study. MMA is a sport with many different variables and circumstances affecting the outcomes of fights, so determining the greatest fighter of all time will always be affected by the biases of the person conducting the study and what variables he or she chooses to include and ignore. That being said, this study attempted at determining the greatest fighter of all time in the most objective way I could surmise. \par Having the average adjusted win percentage in the UFC be \textit{0.4871} shows that winning in the UFC is fairly difficult. Jon Jones, GSP, and Demetrious Johnson qualify for this study because of their dominance in each of their weight classes as evidence by their stellar adjusted win percentages. Although all three have a relatively high win percentages, Jon Jones has a slight edge over GSP and Demetrious Johnson. When considering that Jon Jones has only one loss to Matt Hamill by disqualification for "illegal downward elbows" in a fight that he was clearly winning, his record is even more impressing. "Illegal downward elbows" has a been a controversial rule in the sport. MMA writer, Ben Fowlkes, details the differing views on this rule among the MMA community. \cite{fowlkes_2014} \par When evaluating the average win percentages of the opponents of these three champions, we see that our top 3 had to face above average competition to achieve their high win percentages. \textit{Table 2} illustrates clearly how median and mean win percentage of each of the top 3 fighters is higher than the median and mean win percentages for all UFC fighters. To be considered the greatest, a fighter must have an an almost perfect record against above average competition. \par Considering most UFC fights occur between fighters in their early 30s and late 20s, the UFC is a operates as a major league for MMA. Fighters build their skills in local circuits before they're ready for the big leagues. The fact that Jon Jones, GSP, and Demetrious Johnson were all three able to not only make it to the UFC, but become champions in their weight classes, each by the age of 26, shows how much of an anomaly each of their careers are in the MMA world. The three champions have displayed longevity in their dominance through their consecutive title defenses. Defending a title in many way is much harder than fighting for one. The champion in most cases fights the best competition, the entire the division works on different strategies and game plans to defeat its champion, the champion has more media obligations, and there is more psychological pressure on the champion. \cite{martin_2013} Most above-average UFC fighters spend their entire careers building towards having an opportunity to fight for a title. The fact that Demetrious Johnson and GSP were able to defend the title 9 times is evidence of their greatness and gives them credibility in the argument for the greatest fighter of all time over Jon Jones who only defended the title 8 times consecutively. \cite{ryder_2018} \par The findings from the different methods of victory for each individual weight class can be used to make some strong conclusions about margin for error. The percentage chance that a fight ends in one of the two fighters being finished can be seen as a margin for error in movement for a fighter in that fight. Fighting in a weight class with a high percentage of finishes in its fights, can be seen as a higher level of difficulty for the fighter and entire weight class. If a fighter zigs when he should have zagged, the fight could be over very quickly. This puts fighters in lighter weight classes at a disadvantage because fights at lower weight classes, like welterweight and flyweight have a higher percentage chances of the fights ending in a judges decision than a light heavyweight fight, according to Figures 1-4. Jon Jones has to fight more dangerous competition than GSP and Demetrious Johnson by virtue of how large and powerful they are. It does not take an MMA expert to realize that a punch from 205 pound athlete careers a greater potential of ending a fight than a punch from a 170 or 125 pound athlete. Essentially, Demetrious Johnson and GSP can afford to make more mistakes in thier fights because they do not have to worry about the threat of being finished as much as Jon Jones. This gives Jon Jones victories a higher level of difficulty. \par Figures 5-7 show that Jon Jones also displayed the highest the percentage of finishes in victories among the top 3. Although a fighter could still dominate his opponent in a fight that went to judges' decision, the ability to finish your opponent is a valuable skill when assessing a fighters effectiveness. The fact that the percentage of finishes he has in his fight is lower than the average for his weight class could be a result of him fighting higher than average competition. Championship fights are also five rounds instead of the standard three-round fight, which could lead to the competitors fighting at a slower, more measured pace instead of going for the kill. \par Ultimately, the argument for the greatest fighter of all time is a subjective one, but this study is evidence that Jon Jones can claim the title as the pound-for-pound greatest fighter of all time. If given more time, it would interesting to analyze the prevalence of performance enhancing drugs (PEDs) in MMA. The UFC in 2015 implemented the strictest drug testing in professional sports through the United States Anti Doping Agency (USADA). Since there was a noticeable change in performance from many fighters, it would be interesting to do an analysis of which fighters benefited and were hurt the most by the drug testing. Jon Jones is one of the highest profile fighters who has failed a USADA drug test multiple times. 
+\vfill
+\pagebreak{}
+\begin{spacing}{1.0}
+\bibliographystyle{jpe}
+\bibliography{references6.bib}
+\addcontentsline{toc}{section}{References}
+\nocite{*}
+\end{spacing}
+
+\section{Figures and Tables}
+\begin{center}
+   \caption{\label{tab:table-name} \textbf{Table 1:}} 
+\end{center}
+\begin{center}
+\resizebox{14cm}{4cm}{
+\begin{tabular}{ccccccc} \hline
+Rank & Name & Class & Bouts & Wins & Win Percentage & Consecutive Title Defenses \\ \hline \hline
+1 & Jon Jones & Light Heavyweight & 17 & 16 & 0.83239 & 9 \\
+2 & Georges St. Pierre & Welterweight & 21 & 19 & 0.81999 & 8 \\
+3 & Demetrious Johnson & Flyweight & 14 & 13 & 0.80669 & 8 \\ \hline
+\end{tabular}
+}
+\end{center}
+\begin{center}
+   \caption{\label{tab:table-name} \textbf{Table 2:}} 
+\end{center}
+\begin{center}
+\resizebox{14cm}{4cm}{
+\begin{tabular}{ccccccc} \hline
+Opponents of: & Min. Win\% & 1st Qu. Win\% & Median Win\% & Mean Win\% & 3rd Qu. Win\% & Max. Win\% \\ \hline \hline
+Jon Jones & 0.3678 & 0.5243 & 0.5689 & 0.5785 & 0.6387 & 0.7212 \\
+Georges St. Pierre & 0.2909 & 0.5088 & 0.5643 & 0.5468 & 0.6139 & 0.7546 \\
+Demetrious Johnson & 0.3248 & 0.5000 & 0.5398 & 0.5616 & 0.6285 & 0.7556\\ \hline
+\end{tabular}
+}
+\pagebreak{}
+\end{center}
+\begin{center}
+   \caption{\label{fig:fig1} \textbf{Figure 1:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.5\linewidth]{AllFightersPie1.png}
+\end{figure}
+\begin{center}
+   \caption{\label{fig:fig2} \textbf{Figure 2:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.6\linewidth]{LightHeavyweightPie2.png}
+\end{figure}
+\pagebreak{}
+\begin{center}
+   \caption{\label{fig:fig2} \textbf{Figure 3:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.6\linewidth]{WelterweightPie2.png}
+\end{figure}
+\begin{center}
+   \caption{\label{fig:fig2} \textbf{Figure 4:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.6\linewidth]{FlyweightsPie1.png}
+\end{figure}
+\begin{center}
+\pagebreak{}
+   \caption{\label{fig:fig2} \textbf{Figure 5:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.6\linewidth]{JonJonesPie.png}
+\end{figure}
+\begin{center}
+   \caption{\label{fig:fig2} \textbf{Figure 6:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.6\linewidth]{GSPPie.png}
+\end{figure}
+\pagebreak{}
+\begin{center}
+   \caption{\label{fig:fig2} \textbf{Figure 7:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.6\linewidth]{DJohnsonPie.png}
+\end{figure}
+\begin{center}
+   \caption{\label{fig:fig2} \textbf{Figure 8:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.6\linewidth]{WinAgeDistribution.png}
+\end{figure}
+\pagebreak{}
+\begin{center}
+   \caption{\label{fig:fig2} \textbf{Figure 9:}} 
+\end{center}
+\begin{figure}[ht]
+\centering
+\bigskip{}
+\includegraphics[width=.6\linewidth]{WinRate.png}
+\end{figure}
+\end{document}
